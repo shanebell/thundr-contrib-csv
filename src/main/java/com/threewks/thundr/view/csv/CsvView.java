@@ -23,9 +23,16 @@ import java.util.Iterator;
 import java.util.List;
 
 import com.atomicleopard.expressive.Expressive;
+import com.threewks.thundr.http.ContentType;
+import com.threewks.thundr.view.BaseView;
+import com.threewks.thundr.view.View;
 
-public class CsvView {
+public class CsvView extends BaseView<CsvView> implements View {
 	private Iterable<List<String>> rowProvider;
+
+	public CsvView() {
+		withContentType(ContentType.TextCsv.value());
+	}
 
 	public static CsvView fromArrays(Iterable<String[]> data) {
 		List<List<String>> asLists = new ArrayList<List<String>>();

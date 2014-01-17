@@ -23,13 +23,13 @@ import com.threewks.thundr.action.method.bind.csv.CsvJavabeanBinaryParameterBind
 import com.threewks.thundr.action.method.bind.csv.CsvReaderBinaryParameterBinder;
 import com.threewks.thundr.action.method.bind.csv.CsvRowsBinaryParameterBinder;
 import com.threewks.thundr.action.method.bind.http.ParameterBinderSet;
-import com.threewks.thundr.injection.BaseInjectionConfiguration;
+import com.threewks.thundr.injection.BaseModule;
 import com.threewks.thundr.injection.UpdatableInjectionContext;
 import com.threewks.thundr.view.ViewResolverRegistry;
 import com.threewks.thundr.view.csv.CsvView;
 import com.threewks.thundr.view.csv.CsvViewResolver;
 
-public class CsvInjectionConfiguration extends BaseInjectionConfiguration {
+public class CsvModule extends BaseModule {
 
 	@Override
 	protected void addServices(UpdatableInjectionContext injectionContext) {

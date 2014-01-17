@@ -26,8 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import au.com.bytecode.opencsv.CSVWriter;
 
-import com.threewks.thundr.http.ContentType;
-import com.threewks.thundr.http.HttpSupport;
+import com.threewks.thundr.view.BaseView;
 import com.threewks.thundr.view.ViewResolutionException;
 import com.threewks.thundr.view.ViewResolver;
 
@@ -36,7 +35,7 @@ public class CsvViewResolver implements ViewResolver<CsvView> {
 
 	@Override
 	public void resolve(HttpServletRequest req, HttpServletResponse resp, CsvView viewResult) {
-		resp.addHeader(HttpSupport.Header.ContentType, ContentType.TextCsv.value());
+		BaseView.applyToResponse(viewResult, resp);
 		try {
 			PrintWriter writer = resp.getWriter();
 			writeCsv(viewResult.getRowProvider(), writer);
