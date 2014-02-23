@@ -23,6 +23,7 @@ import au.com.bytecode.opencsv.CSVReader;
 
 import com.threewks.thundr.action.method.bind.BindException;
 import com.threewks.thundr.action.method.bind.http.BinaryParameterBinder;
+import com.threewks.thundr.action.method.bind.http.MultipartFile;
 import com.threewks.thundr.csv.CsvCommon;
 import com.threewks.thundr.introspection.ParameterDescription;
 
@@ -36,9 +37,9 @@ public class CsvRowsBinaryParameterBinder implements BinaryParameterBinder<List<
 	}
 
 	@Override
-	public List<String[]> bind(ParameterDescription parameterDescription, byte[] data) {
+	public List<String[]> bind(ParameterDescription parameterDescription, MultipartFile data) {
 		try {
-			CSVReader csvReader = CsvCommon.createCsvReader(data);
+			CSVReader csvReader = CsvCommon.createCsvReader(data.getData());
 			List<String[]> result = csvReader.readAll();
 			csvReader.close();
 			return result;

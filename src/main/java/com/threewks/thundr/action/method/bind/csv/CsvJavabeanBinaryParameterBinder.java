@@ -25,6 +25,7 @@ import au.com.bytecode.opencsv.bean.HeaderColumnNameMappingStrategy;
 
 import com.threewks.thundr.action.method.bind.BindException;
 import com.threewks.thundr.action.method.bind.http.BinaryParameterBinder;
+import com.threewks.thundr.action.method.bind.http.MultipartFile;
 import com.threewks.thundr.csv.CsvCommon;
 import com.threewks.thundr.introspection.ParameterDescription;
 
@@ -40,10 +41,10 @@ public class CsvJavabeanBinaryParameterBinder implements BinaryParameterBinder<L
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<?> bind(ParameterDescription parameterDescription, byte[] data) {
+	public List<?> bind(ParameterDescription parameterDescription, MultipartFile data) {
 		Class<Object> type = (Class<Object>) parameterDescription.getGenericType(0);
 		try {
-			CSVReader csvReader = CsvCommon.createCsvReader(data);
+			CSVReader csvReader = CsvCommon.createCsvReader(data.getData());
 			CsvToBean<Object> beanConverter = new CsvToBean<Object>();
 			HeaderColumnNameMappingStrategy<Object> mapper = new HeaderColumnNameMappingStrategy<Object>();
 			mapper.setType(type);
