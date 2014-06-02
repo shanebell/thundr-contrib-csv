@@ -4,8 +4,8 @@
 		<artifactId>thundr-parent</artifactId>
 		<version>3</version>
 	</parent>
-	<artifactId>thundr-csv</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<artifactId>thundr-contrib-csv</artifactId>
+	<version>1.1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>Thundr Csv</name>
 	<description>A thundr module for working with csvs</description>
@@ -33,9 +33,9 @@
 		</license>
 	</licenses>
 	<scm>
-		<connection>scm:git:https://github.com/3wks/thundr-pegdown</connection>
-		<developerConnection>scm:git:https://github.com/3wks/thundr-pegdown</developerConnection>
-		<url>https://github.com/3wks/thundr-pegdown</url>
+		<connection>scm:git:https://github.com/3wks/${project.name}</connection>
+		<developerConnection>scm:git:https://github.com/3wks/${project.name}</developerConnection>
+		<url>https://github.com/3wks/${project.name}</url>
 		<tag>HEAD</tag>
 	</scm>
 
@@ -51,8 +51,8 @@
 		<dependency>
 			<groupId>com.threewks.thundr</groupId>
 			<artifactId>thundr</artifactId>
-			<version>${project.version}</version>
-			<scope>provided</scope>
+			<version>1.1.0-SNAPSHOT</version>
+			<scope>compile</scope>
 		</dependency>
 		<!-- Servlet Api is required to implement ViewResolvers -->
 		<dependency>
