@@ -1,4 +1,4 @@
-thundr-pegdown
+thundr-contrib-csv
 =================
 
 A thundr module for easing working with CSVs.
@@ -34,13 +34,13 @@ Include the thundr-csv dependency using maven or your favourite dependency manag
     <dependency>
   		<groupId>com.threewks.thundr</groupId>
 			<artifactId>thundr-csv</artifactId>
-			<version>0.9.11</version>
+			<version>1.1.0</version>
 			<scope>compile</scope>
 		</dependency>
     
 
-After including the thundr-csv module in your modules.properties
+After including the thundr-csv module in your dependencies
     
-    com.threewks.thundr.csv=
+    dependencyRegistry.addDependency(CsvModule.class);
     
 You can now use the CsvView and any of the controller bindings.
