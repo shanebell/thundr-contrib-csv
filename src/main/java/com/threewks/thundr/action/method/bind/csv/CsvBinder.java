@@ -24,21 +24,21 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import au.com.bytecode.opencsv.CSVReader;
-import au.com.bytecode.opencsv.bean.CsvToBean;
-import au.com.bytecode.opencsv.bean.HeaderColumnNameMappingStrategy;
-
 import com.atomicleopard.expressive.Expressive;
-import com.threewks.thundr.action.method.bind.ActionMethodBinder;
-import com.threewks.thundr.action.method.bind.BindException;
+import com.threewks.thundr.bind.BindException;
+import com.threewks.thundr.bind.Binder;
 import com.threewks.thundr.csv.CsvCommon;
 import com.threewks.thundr.http.ContentType;
 import com.threewks.thundr.introspection.ParameterDescription;
 
+import au.com.bytecode.opencsv.CSVReader;
+import au.com.bytecode.opencsv.bean.CsvToBean;
+import au.com.bytecode.opencsv.bean.HeaderColumnNameMappingStrategy;
+
 /**
  * Can bind text/csv content to {@link CSVReader} or List<String[]> controller parameters.
  */
-public class CsvActionMethodBinder implements ActionMethodBinder {
+public class CsvBinder implements Binder {
 	@Override
 	public void bindAll(Map<ParameterDescription, Object> bindings, HttpServletRequest req, HttpServletResponse resp, Map<String, String> pathVariables) {
 		if (Expressive.isNotEmpty(bindings) && canBind(req.getContentType())) {

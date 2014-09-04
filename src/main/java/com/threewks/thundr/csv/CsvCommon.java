@@ -26,11 +26,11 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import au.com.bytecode.opencsv.CSVReader;
-
 import com.atomicleopard.expressive.Cast;
-import com.threewks.thundr.introspection.ClassIntrospector;
 import com.threewks.thundr.introspection.ParameterDescription;
+import com.threewks.thundr.introspection.TypeIntrospector;
+
+import au.com.bytecode.opencsv.CSVReader;
 
 public class CsvCommon {
 	public static boolean isAListOfStringArray(ParameterDescription parameterDescription) {
@@ -50,6 +50,6 @@ public class CsvCommon {
 	}
 
 	public static boolean isABean(Type type) {
-		return ClassIntrospector.isAJavabean(Cast.as(type, Class.class));
+		return TypeIntrospector.isAJavabean(Cast.as(type, Class.class));
 	}
 }

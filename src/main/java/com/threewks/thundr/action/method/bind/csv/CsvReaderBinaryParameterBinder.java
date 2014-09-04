@@ -19,13 +19,13 @@ package com.threewks.thundr.action.method.bind.csv;
 
 import java.io.UnsupportedEncodingException;
 
-import au.com.bytecode.opencsv.CSVReader;
-
-import com.threewks.thundr.action.method.bind.BindException;
-import com.threewks.thundr.action.method.bind.http.BinaryParameterBinder;
-import com.threewks.thundr.action.method.bind.http.MultipartFile;
+import com.threewks.thundr.bind.BindException;
+import com.threewks.thundr.bind.parameter.BinaryParameterBinder;
 import com.threewks.thundr.csv.CsvCommon;
+import com.threewks.thundr.http.MultipartFile;
 import com.threewks.thundr.introspection.ParameterDescription;
+
+import au.com.bytecode.opencsv.CSVReader;
 
 /**
  * This binder knows how to convert multipart binary data into a CsvReader

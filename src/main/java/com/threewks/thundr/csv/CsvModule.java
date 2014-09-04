@@ -17,14 +17,16 @@
  */
 package com.threewks.thundr.csv;
 
-import com.threewks.thundr.action.method.bind.ActionMethodBinderRegistry;
-import com.threewks.thundr.action.method.bind.csv.CsvActionMethodBinder;
+import com.threewks.thundr.action.method.bind.csv.CsvBinder;
 import com.threewks.thundr.action.method.bind.csv.CsvJavabeanBinaryParameterBinder;
 import com.threewks.thundr.action.method.bind.csv.CsvReaderBinaryParameterBinder;
 import com.threewks.thundr.action.method.bind.csv.CsvRowsBinaryParameterBinder;
-import com.threewks.thundr.action.method.bind.http.ParameterBinderSet;
+import com.threewks.thundr.bind.BinderModule;
+import com.threewks.thundr.bind.BinderRegistry;
+import com.threewks.thundr.bind.parameter.ParameterBinderRegistry;
 import com.threewks.thundr.injection.BaseModule;
 import com.threewks.thundr.injection.UpdatableInjectionContext;
+import com.threewks.thundr.module.DependencyRegistry;
 import com.threewks.thundr.view.ViewResolverRegistry;
 import com.threewks.thundr.view.csv.CsvView;
 import com.threewks.thundr.view.csv.CsvViewResolver;
@@ -32,19 +34,24 @@ import com.threewks.thundr.view.csv.CsvViewResolver;
 public class CsvModule extends BaseModule {
 
 	@Override
-	protected void addServices(UpdatableInjectionContext injectionContext) {
-		super.addServices(injectionContext);
-		ActionMethodBinderRegistry methodActionResolverRegistry = injectionContext.get(ActionMethodBinderRegistry.class);
-		methodActionResolverRegistry.registerActionMethodBinder(new CsvActionMethodBinder());
-
-		ParameterBinderSet.registerGlobalBinder(new CsvReaderBinaryParameterBinder());
-		ParameterBinderSet.registerGlobalBinder(new CsvRowsBinaryParameterBinder());
-		ParameterBinderSet.registerGlobalBinder(new CsvJavabeanBinaryParameterBinder());
+	public void requires(DependencyRegistry dependencyRegistry) {
+		super.requires(dependencyRegistry);
+		dependencyRegistry.addDependency(BinderModule.class);
 	}
 
 	@Override
-	protected void addViewResolvers(ViewResolverRegistry viewResolverRegistry, UpdatableInjectionContext injectionContext) {
-		super.addViewResolvers(viewResolverRegistry, injectionContext);
+	public void configure(UpdatableInjectionContext injectionContext) {
+		super.configure(injectionContext);
+
+		BinderRegistry binderRegistry = injectionContext.get(BinderRegistry.class);
+		binderRegistry.registerBinder(new CsvBinder());
+
+		ParameterBinderRegistry parameterBinderRegistry = injectionContext.get(ParameterBinderRegistry.class);
+		parameterBinderRegistry.addBinder(new CsvReaderBinaryParameterBinder());
+		parameterBinderRegistry.addBinder(new CsvRowsBinaryParameterBinder());
+		parameterBinderRegistry.addBinder(new CsvJavabeanBinaryParameterBinder());
+
+		ViewResolverRegistry viewResolverRegistry = injectionContext.get(ViewResolverRegistry.class);
 		viewResolverRegistry.addResolver(CsvView.class, new CsvViewResolver());
 	}
 }
