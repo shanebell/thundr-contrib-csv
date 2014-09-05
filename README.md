@@ -29,17 +29,17 @@ CsvView by invoking one of the static factory methods, which allow you to supply
       
 ## Getting it going
 
-Include the thundr-csv dependency using maven or your favourite dependency management tool.
+Include the thundr-contrib-csv dependency using maven or your favourite dependency management tool.
     
     <dependency>
   		<groupId>com.threewks.thundr</groupId>
-			<artifactId>thundr-csv</artifactId>
+			<artifactId>thundr-contrib-csv</artifactId>
 			<version>1.1.0</version>
 			<scope>compile</scope>
 		</dependency>
     
 
-After including the thundr-csv module in your dependencies
+After including the thundr-contrib-csv module in your dependencies
     
     dependencyRegistry.addDependency(CsvModule.class);
     
